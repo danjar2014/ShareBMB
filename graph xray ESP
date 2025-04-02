@@ -1,0 +1,60 @@
+GET https://graph.microsoft.com/beta/deviceManagement/deviceEnrollmentConfigurations?$expand=assignments&$filter=deviceEnrollmentConfigurationType%20eq%20%27Windows10EnrollmentCompletionPageConfiguration%27
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Enrollment
+
+Get-MgBetaDeviceManagementDeviceEnrollmentConfiguration -ExpandProperty "assignments" -Filter "deviceEnrollmentConfigurationType eq 'Windows10EnrollmentCompletionPageConfiguration'" 
+GET https://graph.microsoft.com/beta/deviceManagement/virtualEndpoint/getEffectivePermissions
+GET https://graph.microsoft.com/beta/deviceManagement/virtualEndpoint/cloudPCs?$count=true&$top=0&$filter=status+eq+%27failed%27
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Administration
+
+Get-MgBetaDeviceManagementVirtualEndpointCloudPc -CountVariable CountVar -Top 0 -Filter "status eq 'failed'" 
+GET /deviceManagement/deviceCompliancePolicyDeviceStateSummary
+Import-Module Microsoft.Graph.Beta.DeviceManagement
+
+Get-MgBetaDeviceManagementDeviceCompliancePolicyDeviceStateSummary
+GET /deviceManagement/subscriptionState
+POST /deviceManagement/reports/getFailedMobileAppsSummaryReport
+Import-Module Microsoft.Graph.Beta.Reports
+
+Get-MgBetaDeviceManagementReportFailedMobileAppSummaryReport
+POST /deviceManagement/reports/getDeviceConfigurationPolicyStatusSummary
+Import-Module Microsoft.Graph.Beta.Reports
+
+Get-MgBetaDeviceManagementReportDeviceConfigurationPolicyStatusSummary
+GET /deviceManagement/managedDeviceOverview
+Import-Module Microsoft.Graph.Beta.DeviceManagement
+
+Get-MgBetaDeviceManagementManagedDeviceOverview
+GET /deviceManagement/applePushNotificationCertificate
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Administration
+
+Get-MgBetaDeviceManagementApplePushNotificationCertificate
+GET /deviceManagement/windowsAutoPilotSettings
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Enrollment
+
+Get-MgBetaDeviceManagementWindowsAutopilotSetting
+GET /deviceManagement/deviceManagementPartners/007d2fff-e0dd-4b28-8595-cec005efe5cd
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Administration
+
+Get-MgBetaDeviceManagementPartner -DeviceManagementPartnerId $deviceManagementPartnerId
+GET /deviceManagement/ndesConnectors
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Administration
+
+Get-MgBetaDeviceManagementNdeConnector
+GET /deviceAppManagement/vppTokens
+Import-Module Microsoft.Graph.Beta.Devices.CorporateManagement
+
+Get-MgBetaDeviceAppManagementVppToken
+GET /subscribedSkus
+Import-Module Microsoft.Graph.Beta.Identity.DirectoryManagement
+
+Get-MgBetaSubscribedSku
+GET /deviceManagement/depOnboardingSettings/
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Enrollment
+
+Get-MgBetaDeviceManagementDepOnboardingSetting
+GET deviceManagement/exchangeConnectors
+GET /deviceManagement/mobileThreatDefenseConnectors?$select=id,lastHeartbeatDateTime,partnerState
+Import-Module Microsoft.Graph.Beta.DeviceManagement.Administration
+
+Get-MgBetaDeviceManagementMobileThreatDefenseConnector -Property "id,lastHeartbeatDateTime,partnerState" 
+GET deviceManagement/androidManagedStoreAccountEnterpriseSettings
