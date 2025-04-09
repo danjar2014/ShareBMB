@@ -15,3 +15,6 @@ foreach ($file in $csvin) {
         Write-Warning "Erreur pendant le traitement de $($file.Name) : $_"
     }
 }
+
+
+Please note: Provisioning in CIS may take some time depending on the server load. In some cases, it can take up to 2 hours to complete.
