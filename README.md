@@ -1,27 +1,17 @@
-# Dossier contenant les fichiers CSV
-$folderPath = "C:\Ton\Chemin\Ici"
+$folderPath = 'filesystem::\\frmdfs1\eu_digital_working$\ImportCISCMPP'
+$csvin = Get-ChildItem -Path $folderPath -Filter *.csv | Sort-Object CreationTime
 
-# Récupère les fichiers CSV triés par date de création croissante
-$csvFiles = Get-ChildItem -Path $folderPath -Filter *.csv | Sort-Object CreationTime
-
-foreach ($file in $csvFiles) {
-    Write-Host "Traitement du fichier : $($file.Name)"
+foreach ($file in $csvin) {
+    Write-Host "Traitement de fichier : $($file.Name)"
 
     try {
-        # Lis le contenu du fichier CSV
-        $data = Import-Csv -Path $file.FullName
-
-        # ----- TON BLOC DE TRAITEMENT ICI -----
-        # Exemple : afficher le nombre de lignes
-        Write-Host "Nombre de lignes : $($data.Count)"
-
-        # --------------------------------------
-
-        # Suppression du fichier après traitement
-        Remove-Item -Path $file.FullName -Force
-        Write-Host "Fichier supprimé : $($file.Name)"
-    }
-    catch {
+        if (-not (Test-Path -Path $file.FullName -PathType Leaf)) {
+            Write-Warning "$($file.Name) not found"
+        } else {
+            Write-Host "$($file.Name) existe, on continue"
+            # Traitement à ajouter ici
+        }
+    } catch {
         Write-Warning "Erreur pendant le traitement de $($file.Name) : $_"
     }
 }
